@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=4 uid="uid://cgsxkusputf4w"]
+
+[ext_resource type="Script" path="res://Clock/second-hand.gd" id="1_g15ij"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q73mf"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.937489, 0.316346, 0.3274, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_n4i0h"]
+_surfaces = [{
+"aabb": AABB(-0.00139964, 0, -0.0573059, 0.00279928, 1e-05, 0.0680757),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("BAADAAUABAACAAMAAAAFAAEAAAAEAAUA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("J0wAAP//AADXswAA//8AAKFVAAAAAAAAXaoAAAAAAAAAAAAAN9cAAP//AAA31wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lif6r"]
+resource_name = "clock2_Plane_003"
+_surfaces = [{
+"aabb": AABB(-0.00139964, 0, -0.0573059, 0.00279928, 1e-05, 0.0680757),
+"attribute_data": PackedByteArray("AAD///////8AABkc//8ZHAAA2dX//9nV"),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("BAADAAUABAACAAMAAAAFAAEAAAAEAAUA"),
+"material": SubResource("StandardMaterial3D_q73mf"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("J0wAAP///7/XswAA////v6FVAAAAAP+/XaoAAAAA/78AAAAAN9f/v///AAA31/+/////f////3/+//9//v//f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_n4i0h")
+
+[sub_resource type="Animation" id="Animation_i8mqs"]
+resource_name = "SecondHandAction"
+length = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("SecondHand")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.0333333, 1, 0, 0, 0, 1, 0.0666667, 1, 0, -0.0557676, 0, 0.998444, 0.1, 1, 0, -0.0839081, 0, 0.996474, 0.133333, 1, 0, -0.0676647, 0, 0.997708, 0.166667, 1, 0, -0.0564485, 0, 0.998406, 0.2, 1, 0, -0.0534575, 0, 0.99857, 0.25, 1, 0, -0.052336, 0, 0.99863)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_or5b2"]
+_data = {
+"SecondHandAction": SubResource("Animation_i8mqs")
+}
+
+[node name="SecondHand" type="Node3D"]
+script = ExtResource("1_g15ij")
+
+[node name="SecondHand" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003, 0)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_lif6r")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_or5b2")
+}
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+unit_size = 2.0
+max_db = -5.0
+max_distance = 10.0
+max_polyphony = 4
+attenuation_filter_cutoff_hz = 20500.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

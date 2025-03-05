@@ -1,0 +1,52 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Godot 4.4 Test Project"
+run/main_scene="uid://dos632aph748s"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://co2x5me5ct3gf"
+config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1500
+
+[display]
+
+window/size/mode=3
+
+[input]
+
+quit={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
+]
+}
+greet={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
+]
+}
+
+[internationalization]
+
+locale/translation_remaps={
+"res://boot/flag/gb.svg": PackedStringArray("res://boot/flag/bg.svg:bg", "res://boot/flag/de.svg:de", "res://boot/flag/fr.svg:fr", "res://boot/flag/jp.svg:ja", "res://boot/flag/tr.svg:tr", "res://boot/flag/cn.svg:zh", "res://boot/flag/ru.svg:ru", "res://boot/flag/cz.svg:cs", "res://boot/flag/ro.svg:ro", "res://boot/flag/gr.svg:el", "res://boot/flag/vn.svg:vi", "res://boot/flag/se.svg:sv", "res://boot/flag/is.svg:is", "res://boot/flag/fi.svg:fi", "res://boot/flag/uz.svg:uz", "res://boot/flag/sk.svg:sk", "res://boot/flag/si.svg:sl", "res://boot/flag/np.svg:ne", "res://boot/flag/in.svg:hi", "res://boot/flag/pl.svg:pl", "res://boot/flag/al.svg:sq", "res://boot/flag/rs.svg:sr", "res://boot/flag/ge.svg:ka", "res://boot/flag/it.svg:it", "res://boot/flag/pt.svg:pt", "res://boot/flag/mm.svg:my", "res://boot/flag/id.svg:id", "res://boot/flag/ee.svg:et", "res://boot/flag/es.svg:es", "res://boot/flag/nl.svg:nl", "res://boot/flag/kr.svg:ko", "res://boot/flag/dk.svg:da", "res://boot/flag/gb-wls.svg:cy", "res://boot/flag/arab.svg:ar", "res://boot/flag/az.svg:az", "res://boot/flag/hu.svg:hu", "res://boot/flag/ba.svg:bs", "res://boot/flag/lv.svg:lv", "res://boot/flag/am.svg:hy", "res://boot/flag/lt.svg:lt"),
+"res://boot/greet/en.wav": PackedStringArray("res://boot/greet/bg.wav:bg", "res://boot/greet/de.wav:de", "res://boot/greet/ja.wav:ja", "res://boot/greet/ru.wav:ru", "res://boot/greet/zh.wav:zh", "res://boot/greet/cs.wav:cs", "res://boot/greet/ro.wav:ro", "res://boot/greet/fr.wav:fr", "res://boot/greet/tr.wav:tr", "res://boot/greet/el.wav:el", "res://boot/greet/vi.wav:vi", "res://boot/greet/sv.wav:sv", "res://boot/greet/is.wav:is", "res://boot/greet/fi.wav:fi", "res://boot/greet/uz.wav:uz", "res://boot/greet/sk.wav:sk", "res://boot/greet/sl.wav:sl", "res://boot/greet/ne.wav:ne", "res://boot/greet/hi.wav:hi", "res://boot/greet/pl.wav:pl", "res://boot/greet/sq.wav:sq", "res://boot/greet/sr.wav:sr", "res://boot/greet/ka.wav:ka", "res://boot/greet/it.wav:it", "res://boot/greet/pt.wav:pt", "res://boot/greet/my.wav:my", "res://boot/greet/id.wav:id", "res://boot/greet/et.wav:et", "res://boot/greet/es.wav:es", "res://boot/greet/nl.wav:nl", "res://boot/greet/ko.wav:ko", "res://boot/greet/da.wav:da", "res://boot/greet/cy.wav:cy", "res://boot/greet/ar.wav:ar", "res://boot/greet/az.wav:az", "res://boot/greet/hu.wav:hu", "res://boot/greet/bs.wav:bs", "res://boot/greet/lv.wav:lv", "res://boot/greet/hy.wav:hy", "res://boot/greet/lt.wav:lt")
+}
+locale/translations=PackedStringArray("res://locale/bg/bg.mo", "res://locale/de/de.mo", "res://locale/ja/ja.mo", "res://locale/ru/ru.mo", "res://locale/zh/zh.mo", "res://locale/cs/cs.mo", "res://locale/ro/ro.mo", "res://locale/fr/fr.mo", "res://locale/tr/tr.mo", "res://locale/el/el.mo", "res://locale/vi/vi.mo", "res://locale/sv/sv.mo", "res://locale/is/is.mo", "res://locale/fi/fi.mo", "res://locale/uz/uz.mo", "res://locale/sk/sk.mo", "res://locale/sl/sl.mo", "res://locale/ne/ne.mo", "res://locale/hi/hi.mo", "res://locale/pl/pl.mo", "res://locale/sq/sq.mo", "res://locale/sr/sr.mo", "res://locale/ka/ka.mo", "res://locale/it/it.mo", "res://locale/pt/pt.mo", "res://locale/my/my.mo", "res://locale/id/id.mo", "res://locale/et/et.mo", "res://locale/es/es.mo", "res://locale/nl/nl.mo", "res://locale/ko/ko.mo", "res://locale/da/da.mo", "res://locale/cy/cy.mo", "res://locale/ar/ar.mo", "res://locale/az/az.mo", "res://locale/hu/hu.mo", "res://locale/bs/bs.mo", "res://locale/lv/lv.mo", "res://locale/hy/hy.mo", "res://locale/lt/lt.mo")
+locale/translations_pot_files=PackedStringArray("res://boot/boot.tscn")
+locale/locale_filter_mode=1
+locale/country_filter=[]
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

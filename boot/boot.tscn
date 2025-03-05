@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0ygb8w4tv1j6"]
+
+[ext_resource type="AudioStream" uid="uid://bq02yj6u1ypid" path="res://boot/greet/en.wav" id="1_8im2v"]
+[ext_resource type="Texture2D" uid="uid://cadbvo75tq3vc" path="res://boot/flag/gb.svg" id="2_r7ymn"]
+
+[sub_resource type="GDScript" id="GDScript_fynoh"]
+script/source = "extends Node
+
+@onready var boot_sound: AudioStreamPlayer = $BootSound
+@onready var locale_lb: Label = $LocaleInfo/HBoxContainer/Locale
+@onready var background: ColorRect = $Background
+
+var colors: Array[Color] = [Color.BLACK, Color.from_string(\"#051707\", Color.BLACK), Color.from_string(\"#051017\", Color.BLACK), Color.from_string(\"#160c24\", Color.BLACK), Color.from_string(\"#240c14\", Color.BLACK)]
+
+
+func _ready() -> void:
+	greet()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"quit\"):
+		get_tree().quit()
+	if event.is_action_pressed(\"greet\"):
+		greet()
+	$Idle.start()
+
+
+func greet():
+	TranslationServer.set_locale(TranslationServer.get_loaded_locales()[randi() % len(TranslationServer.get_loaded_locales())])
+	locale_lb.text = TranslationServer.get_locale_name(TranslationServer.get_locale())
+	background.color = colors.pick_random()
+	background.color.a = 0.5
+	boot_sound.play()
+	$Idle.start()
+
+
+func _on_idle_timeout() -> void:
+	greet()
+"
+
+[node name="Boot" type="Node"]
+script = SubResource("GDScript_fynoh")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BootMessage" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(300, 90)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Welcome."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_8im2v")
+
+[node name="LocaleInfo" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LocaleInfo"]
+layout_mode = 2
+
+[node name="Locale" type="Label" parent="LocaleInfo/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "English"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Flag" type="TextureRect" parent="LocaleInfo/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_r7ymn")
+stretch_mode = 5
+
+[node name="Idle" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Idle" to="." method="_on_idle_timeout"]
